@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,10 +23,10 @@ const appRoutes: Routes = [
     component: CashComponent,
     data: { title: 'My cash' }
     },
-  { path: 'expenses', component: ExpensesComponent },
-  { path: 'expenditure_items', component: ExpenditureItemsComponent },
-  { path: 'stats', component: StatsComponent },
-  { path: 'bank_accounts', component: BankAccountsComponent },
+  { path: 'expenses', component: ExpensesComponent, data: { title: 'Mes sorties' } },
+  { path: 'expenditure_items', component: ExpenditureItemsComponent, data: { title: 'Mes postes' }  },
+  { path: 'stats', component: StatsComponent, data: { title: 'Statistiques' }  },
+  { path: 'bank_accounts', component: BankAccountsComponent, data: { title: 'Mes comptes' }  },
 ];
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

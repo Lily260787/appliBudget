@@ -178,10 +178,10 @@
           <div class="card">
             <div class="card-header">
               <h1 class="card-title">Bienvenue {{utilisateur}}</h1>
-              <h4 class="card-title">Dernière connexion le {{date_last_connexion}}</h4>
+              <h4 class="card-title">Dernière connexion le {{date | date:'yyyy-MM-dd'}}</h4>
             </div>
             <div class="card-header">
-              <h2 class="card-title">{{page_title}}</h2>
+              <h2 class="card-title">{{getCurrentTitlePage()}}</h2>
             </div>
           </div>
         </div>

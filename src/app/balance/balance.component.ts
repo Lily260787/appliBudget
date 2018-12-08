@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-
+import {ActivatedRoute, RouterModule, Routes} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-balance',
   templateUrl:
@@ -9,9 +10,8 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BalanceComponent implements OnInit {
 @Input() current_balance: number;
 @Input() id: number;
-  constructor() { }
+  constructor(private router: RouterModule,
+               private route: ActivatedRoute) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {};
 }

@@ -1,10 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { filter, map, mergeMap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'budgetapp';
-  page_title = 'Ici mettre dynamiquement le titre de la page sur laquelle je suis: c\'est pas gagné !!';
+export class AppComponent implements OnInit {
+  public constructor(
+    private router: Router,
+    private titleService: Title,
+    private activatedRoute: ActivatedRoute) {}
+  title = 'My $avings';
+
+  titre: String;
+  ngOnInit() {
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => this.activatedRoute),
+        map((route) => {
+          while (route.firstChild) route = route.firstChild;
+          return route;
+        }),
+        filter((route) => route.outlet === 'primary'),
+        mergeMap((route) => route.data)
+      )
+      .subscribe((event) => {
+        this.titleService.setTitle(event['title']);
+        this.titre = event['title'];
+      });
+  }
+
+  public getCurrentTitlePage() {
+    return this.titre;
+  }
 }
