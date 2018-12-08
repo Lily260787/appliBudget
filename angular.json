@@ -79,6 +79,8 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "src/assets/css/black-dashboard.css",
+              "src/assets/css/nucleo-icons.css",
               "src/styles.css"
             ],
             "scripts": ["../node_modules/jquery/dist/jquery.js",
