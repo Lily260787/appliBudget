@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   titre: String;
   ngOnInit() {
+    // Setting and getting titles into all pages
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),

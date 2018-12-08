@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +24,7 @@ const appRoutes: Routes = [
   },
   { path: 'cash',
     component: CashComponent,
-    data: { title: 'My cash' }
+    data: { title: 'Mes entrées' }
     },
   { path: 'expenses', component: ExpensesComponent, data: { title: 'Mes sorties' } },
   { path: 'expenditure_items', component: ExpenditureItemsComponent, data: { title: 'Mes postes' }  },
@@ -41,8 +44,11 @@ const appRoutes: Routes = [
     MainComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     BrowserModule,
     AppRoutingModule,
+    MaterialModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
