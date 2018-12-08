@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BalanceComponent } from './balance/balance.component';
+import { EstimatedBalanceComponent } from './estimated-balance/estimated-balance.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BalanceComponent,
+    EstimatedBalanceComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
