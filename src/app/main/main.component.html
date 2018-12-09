@@ -33,7 +33,14 @@
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières entrées</h3>
       </div>
       <div class="card-body">
-        <p>Ici futur tableau</p>
+        <ul>
+          <li class="text" *ngFor="let item of cash | async">
+            {{item.label}}
+            {{item.montant}}
+            {{item.date}}
+            {{item.type}}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -48,7 +55,14 @@
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières sorties</h3>
       </div>
       <div class="card-body">
-        <p>Ici futur tableau</p>
+        <ul>
+          <li class="text" *ngFor="let expense of expenses | async">
+            {{expense.label}}
+            {{expense.montant}}
+            {{expense.date}}
+            {{expense.type}}
+          </li>
+        </ul>
       </div>
     </div>
   </div>

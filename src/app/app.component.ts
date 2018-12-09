@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,18 @@ import { filter, map, mergeMap } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  cash: Observable<any[]>;
+  expenses: Observable<any[]>;
+  balance: Observable<any[]>;
+  estimated_balance: Observable<any[]>;
   public constructor(
     private router: Router,
     private titleService: Title,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute,
+    ) {
+
+    // this.expenses = db.collection('expenses').valueOf();
+  }
   title = 'My $avings';
 
   titre: String;
