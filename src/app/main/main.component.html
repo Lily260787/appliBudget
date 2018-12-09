@@ -26,43 +26,135 @@
   <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
 </head>
 <div class="row">
-  <div class="col-lg-4">
+  <div class="col-lg-5">
     <div class="card">
       <div class="card-header">
         <h5 class="card-category">Dernières entrées</h5>
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières entrées</h3>
       </div>
       <div class="card-body">
-        <ul>
-          <li class="text" *ngFor="let item of cash | async">
-            {{item.label}}
-            {{item.montant}}
-            {{item.date}}
-            {{item.type}}
-          </li>
-        </ul>
+        <div class="table-responsive">
+          <table class="table tablesorter">
+            <thead class="text-primary">
+            <tr>
+              <th class="text-center">
+                Date
+              </th>
+              <th class="text-center">
+                Label
+              </th>
+              <th class="text-center">
+                Montant
+              </th>
+              <th class="text-center">
+                Type
+              </th>
+              <th class="text-center">
+                Statut
+              </th>
+              <th class="text-center">
+                Commentaire
+              </th>
+              <th class="text-center">
+                Supprimer
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let item of cash | async">
+              <td class="text-center">
+                10-10-2018
+              </td>
+              <td class="text-center">
+                {{item.label}}
+              </td>
+              <td class="text-center">
+                {{item.amount}}
+              </td>
+              <td class="text-center">
+                {{item.type}}
+              </td>
+              <td class="text-center">
+                {{item.status}}
+              </td>
+              <td class="text-center">
+                {{item.comment}}
+              </td>
+              <td class="text-center">
+                X
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-2">
     <app-balance></app-balance>
     <app-estimated-balance></app-estimated-balance>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-5">
     <div class="card">
       <div class="card-header">
         <h5 class="card-category">Dernières sorties</h5>
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières sorties</h3>
       </div>
       <div class="card-body">
-        <ul>
-          <li class="text" *ngFor="let expense of expenses | async">
-            {{expense.label}}
-            {{expense.montant}}
-            {{expense.date}}
-            {{expense.type}}
-          </li>
-        </ul>
+        <table class="table tablesorter">
+          <thead class="text-primary">
+          <tr>
+            <th class="text-center">
+              Date
+            </th>
+            <th class="text-center">
+              Label
+            </th>
+            <th class="text-center">
+              Montant
+            </th>
+            <th class="text-center">
+              Type
+            </th>
+            <th class="text-center">
+              Statut
+            </th>
+            <th class="text-center">
+              Commentaire
+            </th>
+            <th class="text-center">
+              Supprimer
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let item of expenses | async">
+            <td class="text-center">
+              10-10-2018
+            </td>
+            <td class="text-center">
+              {{item.label}}
+            </td>
+            <td class="text-center">
+              {{item.amount}}
+            </td>
+            <td class="text-center">
+              {{item.type}}
+            </td>
+            <td class="text-center">
+              {{item.status}}
+            </td>
+            <td class="text-center">
+              {{item.comment}}
+            </td>
+            <td class="text-center">
+              X
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
