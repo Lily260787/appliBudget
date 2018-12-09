@@ -64,7 +64,7 @@
 
             <tr *ngFor="let item of cash | async">
               <td class="text-center">
-                10-10-2018
+                {{item.date }}
               </td>
               <td class="text-center">
                 {{item.label}}
@@ -132,7 +132,7 @@
 
           <tr *ngFor="let item of expenses | async">
             <td class="text-center">
-              10-10-2018
+              {{item.date | date : format : timezone}}
             </td>
             <td class="text-center">
               {{item.label}}
