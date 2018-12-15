@@ -58,28 +58,28 @@
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Formulaire de création d'une nouvelle entrée </h3>
       </div>
       <div class="card-body">
-        <form novalidate>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <div class="form-group">
                 <mat-form-field>
-                  <input class="form-control" [(ngModel)]="date" matInput [matDatepicker]="picker">
+                  <input class="form-control" name="date" matInput [matDatepicker]="picker" ngModel>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
               </div>
               <div class="form-group">
                 <label>Montant</label>
-                <input type="text" [(ngModel)]="amount" class="form-control" placeholder="montant" value="">
+                <input type="text" name="amount" class="form-control" placeholder="montant" value="" ngModel>
               </div>
               <div class="form-group">
                 <label>Libellé</label>
-                <input type="text" [(ngModel)]="label" class="form-control" placeholder="libelle">
+                <input type="text" name="label" class="form-control" placeholder="libelle" ngModel>
               </div>
               <div class="form-group">
                 <label>Type</label>
-                <select class="form-control" [(ngModel)]="type">
+                <select class="form-control" name="type" ngModel>
                   <option></option>
                   <option>Virement</option>
                   <option>Dépôt</option>
@@ -91,15 +91,15 @@
                   <label>Entrée récurrente ?</label>
                 </div>
                 <div class="col-md-6">
-                  <mat-checkbox [(ngModel)]="recurrence"></mat-checkbox>
+                  <mat-checkbox name="recurrence" ngModel></mat-checkbox>
                 </div>
               </div>
             </div>
           </div>
+          <div class="card-footer text-center">
+            <button type="submit" class="btn btn-fill btn-primary">Save</button>
+          </div>
         </form>
-        <div class="card-footer text-center">
-          <button type="submit" class="btn btn-fill btn-primary">Save</button>
-        </div>
       </div>
     </div>
   </div>
