@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterModule, Routes} from '@angular/router';
-import { Routes, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-balance',
   templateUrl:
