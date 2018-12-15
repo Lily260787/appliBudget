@@ -64,22 +64,22 @@
             <div class="col-md-4">
               <div class="form-group">
                 <mat-form-field>
-                  <input class="form-control" name="date" matInput [matDatepicker]="picker" ngModel>
+                  <input class="form-control" name="date" matInput [matDatepicker]="picker" ngModel required>
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
               </div>
               <div class="form-group">
                 <label>Montant</label>
-                <input type="text" name="amount" class="form-control" placeholder="montant" value="" ngModel>
+                <input type="text" name="amount" class="form-control" placeholder="montant" value="" ngModel required>
               </div>
               <div class="form-group">
                 <label>Libellé</label>
-                <input type="text" name="label" class="form-control" placeholder="libelle" ngModel>
+                <input type="text" name="label" class="form-control" placeholder="libelle" ngModel required>
               </div>
               <div class="form-group">
                 <label>Type</label>
-                <select class="form-control" name="type" ngModel>
+                <select class="form-control" name="type" ngModel required>
                   <option></option>
                   <option>Virement</option>
                   <option>Dépôt</option>
@@ -97,7 +97,7 @@
             </div>
           </div>
           <div class="card-footer text-center">
-            <button type="submit" class="btn btn-fill btn-primary">Save</button>
+            <button type="submit" class="btn btn-fill btn-primary" [disabled]="f.invalid">Save</button>
           </div>
         </form>
       </div>
