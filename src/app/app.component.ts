@@ -3,6 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +13,17 @@ import {Observable} from 'rxjs';
 export class AppComponent implements OnInit {
   cash: Observable<any[]>;
   expenses: Observable<any[]>;
+  users: Observable<any[]>;
   balance: Observable<any[]>;
   estimated_balance: Observable<any[]>;
   public constructor(
     private router: Router,
     private titleService: Title,
     private activatedRoute: ActivatedRoute,
+    db: AngularFirestore
     ) {
-
-    // this.expenses = db.collection('expenses').valueOf();
+    this.users = db.collection('users').valueChanges();
+    console.log("ici "+this.users);
   }
   title = 'My $avings';
 

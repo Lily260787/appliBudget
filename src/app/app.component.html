@@ -177,7 +177,7 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
-              <h1 class="card-title">Bienvenue {{utilisateur}}</h1>
+              <h1 *ngFor="let user of users | async" class="card-title">Bienvenue {{user.firstname}} {{user.lastname}}</h1>
               <h4 class="card-title">Dernière connexion le {{date | date:'yyyy-MM-dd'}}</h4>
             </div>
             <div class="card-header">

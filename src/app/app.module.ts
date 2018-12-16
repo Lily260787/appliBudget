@@ -22,6 +22,8 @@ import { StatsComponent } from './stats/stats.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
+import {UserService} from '../services/user.service';
+import { UserListComponent } from './user-list/user-list.component';
 
 const appRoutes: Routes = [
   { path: '',
@@ -47,7 +49,8 @@ const appRoutes: Routes = [
     ExpenditureItemsComponent,
     StatsComponent,
     BankAccountsComponent,
-    MainComponent
+    MainComponent,
+    UserListComponent
   ],
   imports: [
     FormsModule,
@@ -66,7 +69,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [Title],
+  providers: [Title, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
