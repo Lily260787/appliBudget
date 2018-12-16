@@ -9,13 +9,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BalanceComponent } from './balance/balance.component';
 import { EstimatedBalanceComponent } from './estimated-balance/estimated-balance.component';
-import { CashComponent } from './cash/cash.component';
+import { CashListComponent } from './cash-list/cash-list.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { ExpenditureItemsComponent } from './expenditure-items/expenditure-items.component';
 import { StatsComponent } from './stats/stats.component';
@@ -24,6 +24,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import {UserService} from '../services/user.service';
 import { UserListComponent } from './user-list/user-list.component';
+import {CashService} from '../services/cash.service';
+import { NewCashComponent } from './new-cash/new-cash.component';
 
 const appRoutes: Routes = [
   { path: '',
@@ -31,7 +33,7 @@ const appRoutes: Routes = [
     data: { title: 'Accueil' }
   },
   { path: 'cash',
-    component: CashComponent,
+    component: CashListComponent,
     data: { title: 'Mes entrées' }
     },
   { path: 'expenses', component: ExpensesComponent, data: { title: 'Mes sorties' } },
@@ -44,15 +46,17 @@ const appRoutes: Routes = [
     AppComponent,
     BalanceComponent,
     EstimatedBalanceComponent,
-    CashComponent,
+    CashListComponent,
     ExpensesComponent,
     ExpenditureItemsComponent,
     StatsComponent,
     BankAccountsComponent,
     MainComponent,
-    UserListComponent
+    UserListComponent,
+    NewCashComponent
   ],
   imports: [
+    ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
@@ -69,7 +73,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [Title, UserService],
+  providers: [Title, UserService, CashService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
