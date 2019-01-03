@@ -26,13 +26,25 @@ export class CashListComponent implements OnInit {
   ngOnInit() {
     this.cashForm = this.fb.group(
       {
-        amount: ['', [Validators.required]],
-        status : ['created', [Validators.required]],
-        label : ['', [Validators.required]],
-        comment : [],
-        date : ['', [Validators.required]],
-        modality : ['', [Validators.required]],
-        recurrence : ['false', []]
+        amount: ['',
+          [Validators.required,
+          Validators.pattern('[0-9]'),
+          ]
+        ],
+        status : ['created',
+          [Validators.required]
+        ],
+        label : [null,
+          [Validators.required]
+        ],
+        comment : [null],
+        date : [null,
+          [Validators.required]
+        ],
+        modality : [null,
+          [Validators.required]
+        ],
+        recurrence : ['false']
       }
     );
   }
@@ -52,12 +64,12 @@ export class CashListComponent implements OnInit {
     this.cashService.createCash(cash);
   }
 
-  update(cash: Cash) {
-    this.cashService.update(cash);
-  }
+  /*update(cash: Cash) {
+    this.cashService.updateCash(cash);
+  }*/
 
   delete(id: string) {
-    this.firestore.doc('cash/' + id).delete();
+    this.firestore.doc('cash/' + id).deleteCash(id);
   }
 
 }

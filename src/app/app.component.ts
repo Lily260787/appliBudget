@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
  // Getting the cash data
     this.cashService.getCash().subscribe(data => {
       this.cashList = data.map(e => {
-        console.log(e.payload.doc.get('modality'));
         return {
           id: e.payload.doc.id,
           amount: e.payload.doc.get('amount'),
