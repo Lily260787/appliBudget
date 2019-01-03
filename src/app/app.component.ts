@@ -32,8 +32,10 @@ export class AppComponent implements OnInit {
 
   titre: String;
   ngOnInit() {
+
     this.cashService.getCash().subscribe(data => {
       this.cashList = data.map(e => {
+        console.log(e.payload.doc.get('date'));
         return {
           id: e.payload.doc.id,
           amount: e.payload.doc.get('amount'),

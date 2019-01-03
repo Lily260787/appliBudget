@@ -31,7 +31,6 @@ export class CashListComponent implements OnInit {
   }
   async submitForm() {
     this.loading = true;
-
     try {
       await this.create(this.cashForm.value);
       this.success = true;
@@ -41,8 +40,8 @@ export class CashListComponent implements OnInit {
     this.loading = false;
   }
 
-  create() {
-    this.cashService.createCash(this.cashForm.value);
+  create(cash: Cash) {
+    this.cashService.createCash(cash);
   }
 
   update(cash: Cash) {
