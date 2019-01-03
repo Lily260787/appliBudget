@@ -32,10 +32,10 @@ export class AppComponent implements OnInit {
 
   titre: String;
   ngOnInit() {
-
+ // Getting the cash data
     this.cashService.getCash().subscribe(data => {
       this.cashList = data.map(e => {
-        console.log(e.payload.doc.get('date'));
+        console.log(e.payload.doc.get('modality'));
         return {
           id: e.payload.doc.id,
           amount: e.payload.doc.get('amount'),
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
           comment: e.payload.doc.get('comment'),
           date: e.payload.doc.get('date'),
           label: e.payload.doc.get('label'),
-          type: e.payload.doc.get('type'),
+          modality: e.payload.doc.get('modality'),
         } as Cash;
       });
     });

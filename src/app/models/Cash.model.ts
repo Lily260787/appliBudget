@@ -5,6 +5,7 @@ export class Cash {
     public date: string,
     public label: string,
     public status: string,
-    public type: string
+    public modality: string,
+    public recurrence: boolean
   ) {}
 }

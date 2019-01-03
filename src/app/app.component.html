@@ -216,6 +216,9 @@
                     Commentaire
                   </th>
                   <th class="text-center">
+                    Récurrence
+                  </th>
+                  <th class="text-center">
                     Supprimer
                   </th>
                 </tr>
@@ -231,13 +234,16 @@
                     {{item.amount}}
                   </td>
                   <td class="text-center">
-                    {{item.type}}
+                    {{item.modality.name}}
                   </td>
                   <td class="text-center">
                     {{item.status}}
                   </td>
                   <td class="text-center">
                     {{item.comment}}
+                  </td>
+                  <td class="text-center" *ngIf="true">
+                    recurrence ici (rond)
                   </td>
                   <td class="text-center">
                     X

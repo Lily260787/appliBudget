@@ -10,6 +10,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class CashListComponent implements OnInit {
   cashForm: FormGroup;
+  options = [
+    {name : 'Virement'},
+    {name : 'Dépôt'},
+    {name : 'Chèque'}
+  ];
   // Form state
   loading = false;
   success = false;
@@ -22,15 +27,18 @@ export class CashListComponent implements OnInit {
     this.cashForm = this.fb.group(
       {
         amount: ['', [Validators.required]],
-        status : ['', [Validators.required]],
+        status : ['created', [Validators.required]],
         label : ['', [Validators.required]],
         comment : [],
-        date : ['', [Validators.required]]
+        date : ['', [Validators.required]],
+        modality : ['', [Validators.required]],
+        recurrence : ['false', []]
       }
     );
   }
   async submitForm() {
     this.loading = true;
+    console.log(this.cashForm.value);
     try {
       await this.create(this.cashForm.value);
       this.success = true;

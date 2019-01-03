@@ -27,11 +27,9 @@
                 <input type="text" formControlName="label" class="form-control" placeholder="libelle" ngModel required>
               </div>
               <div class="form-group">
-                <label for="type">Type</label>
-                <select class="form-control" name="type" id="type" required>
-                  <option>Virement</option>
-                  <option>Dépôt</option>
-                  <option>Chèque</option>
+                <label for="modality">Type</label>
+                <select formControlName="modality" id="modality" required>
+                  <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
                 </select>
               </div>
               <div class="form-group">
