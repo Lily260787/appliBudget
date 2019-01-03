@@ -186,6 +186,7 @@
           </div>
         </div>
       </div>
+      <!-- Change in fonction of url -->
       <div *ngIf="router.url == '/'" class="row">
         <div class="col-lg-6">
           <div class="card">
@@ -257,6 +258,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div *ngIf="router.url == '/cash'">
+        <app-cash-list></app-cash-list>
       </div>
     </div>
     <footer class="footer">

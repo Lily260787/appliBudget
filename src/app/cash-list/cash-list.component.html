@@ -1,34 +1,5 @@
 
-<h1>Cash-list component</h1>
-<tr *ngFor="let element of cashList">
-  <td>{{element.status}}</td>
-  <td>{{element.amount}}</td>
-</tr>
-<!--div class="row">
-  <div class="col-lg-6">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-category">Liste de vos entrées</h5>
-        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Créer une nouvelle entrée </h3>
-        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Afficher vos entrées </h3>
-      </div>
-      <div class="card-body">
-        <p>Ici futur tableau</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-6">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="card-category">Graphique</h5>
-        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières sorties</h3>
-      </div>
-      <div class="card-body">
-        <p>Ici futur tableau</p>
-      </div>
-    </div>
-  </div>
-
+<div class="row">
   <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
@@ -36,7 +7,7 @@
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Formulaire de création d'une nouvelle entrée </h3>
       </div>
       <div class="card-body">
-        <form [formGroup]="cashForm" (ngSubmit)="onSubmitForm()">
+        <form [formGroup]="cashForm" (ngSubmit)="submitForm()">
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -56,9 +27,8 @@
                 <input type="text" formControlName="label" class="form-control" placeholder="libelle" ngModel required>
               </div>
               <div class="form-group">
-                <label>Type</label>
-                <select class="form-control" formControlName="type" required>
-                  <option></option>
+                <label for="type">Type</label>
+                <select class="form-control" name="type" id="type" required>
                   <option>Virement</option>
                   <option>Dépôt</option>
                   <option>Chèque</option>
@@ -66,20 +36,22 @@
               </div>
               <div class="form-group">
                 <div class="col-md-6">
-                  <label>Entrée récurrente ?</label>
+                  <label for="recurrence">Entrée récurrente ?</label>
                 </div>
                 <div class="col-md-6">
-                  <mat-checkbox formControlName="recurrence" class="form-control"></mat-checkbox>
+                  <mat-checkbox name="recurrence" id="recurrence" class="form-control"></mat-checkbox>
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer text-center">
-            <button (click)="add(cash)" class="btn btn-fill btn-primary">Save</button>
+            <button class="btn btn-fill btn-primary">Save</button>
           </div>
         </form>
+        <div *ngIf="success">
+          Yay! We received your submission
+        </div>
       </div>
     </div>
   </div>
-
-</div-->
+</div>
