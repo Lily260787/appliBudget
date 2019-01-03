@@ -186,7 +186,78 @@
           </div>
         </div>
       </div>
-      <router-outlet></router-outlet>
+      <div *ngIf="router.url == '/'" class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-category">Liste de vos entrées</h5>
+            </div>
+            <div class="card-body">
+              <table class="table tablesorter">
+                <thead class="text-primary">
+                <tr>
+                  <th class="text-center">
+                    Date
+                  </th>
+                  <th class="text-center">
+                    Label
+                  </th>
+                  <th class="text-center">
+                    Montant
+                  </th>
+                  <th class="text-center">
+                    Type
+                  </th>
+                  <th class="text-center">
+                    Statut
+                  </th>
+                  <th class="text-center">
+                    Commentaire
+                  </th>
+                  <th class="text-center">
+                    Supprimer
+                  </th>
+                </tr>
+                </thead>
+                <tr *ngFor="let item of cashList">
+                  <td class="text-center">
+                    {{item.date | date : format : timezone}}
+                  </td>
+                  <td class="text-center">
+                    {{item.label}}
+                  </td>
+                  <td class="text-center">
+                    {{item.amount}}
+                  </td>
+                  <td class="text-center">
+                    {{item.type}}
+                  </td>
+                  <td class="text-center">
+                    {{item.status}}
+                  </td>
+                  <td class="text-center">
+                    {{item.comment}}
+                  </td>
+                  <td class="text-center">
+                    X
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-category">Graphique</h5>
+              <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières sorties</h3>
+            </div>
+            <div class="card-body">
+              <p>Ici futur tableau</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <footer class="footer">
       <div class="container-fluid">

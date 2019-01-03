@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs/observable/of';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Cash } from '../models/Cash.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +12,17 @@ export class CashService {
     return this.firestore.collection('cash').snapshotChanges();
   }
 
-  createCash(cash: cash) {
+  createCash(cash: Cash) {
     return this.firestore.collection('cash').add(cash);
   }
 
-  updateCash(cash: cash) {
+  updateCash(cash: Cash) {
     delete data.id;
     this.firestore.doc('cash-list/' + cash.id).update(cash);
   }
 
-  deleteCash(cash: cash) {
-    this.firestore.doc('cash-list/' + cash.id).delete();
+  deleteCash(cashId: string) {
+    this.firestore.doc('cash-list/' + cashId).delete();
   }
 
 }

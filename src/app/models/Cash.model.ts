@@ -5,6 +5,6 @@ export class Cash {
     public date: string,
     public label: string,
     public status: string,
-    type: string
+    public type: string
   ) {}
 }

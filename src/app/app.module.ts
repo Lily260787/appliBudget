@@ -21,15 +21,13 @@ import { ExpenditureItemsComponent } from './expenditure-items/expenditure-items
 import { StatsComponent } from './stats/stats.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './main/main.component';
-import {UserService} from '../services/user.service';
+import { UserService } from './services/user.service';
 import { UserListComponent } from './user-list/user-list.component';
-import {CashService} from '../services/cash.service';
-import { NewCashComponent } from './new-cash/new-cash.component';
+import { CashService } from './services/cash.service';
 
 const appRoutes: Routes = [
   { path: '',
-    component: MainComponent,
+    component: AppComponent,
     data: { title: 'Accueil' }
   },
   { path: 'cash',
@@ -51,9 +49,7 @@ const appRoutes: Routes = [
     ExpenditureItemsComponent,
     StatsComponent,
     BankAccountsComponent,
-    MainComponent,
     UserListComponent,
-    NewCashComponent
   ],
   imports: [
     ReactiveFormsModule,

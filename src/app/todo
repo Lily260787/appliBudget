@@ -1,0 +1,161 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    My $avings
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Chart JS -->
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
+</head>
+<div class="row">
+<div class="col-lg-5">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-category">Dernières entrées</h5>
+      <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières entrées</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table tablesorter">
+          <thead class="text-primary">
+          <tr>
+            <th class="text-center">
+              Date
+            </th>
+            <th class="text-center">
+              Label
+            </th>
+            <th class="text-center">
+              Montant
+            </th>
+            <th class="text-center">
+              Type
+            </th>
+            <th class="text-center">
+              Statut
+            </th>
+            <th class="text-center">
+              Commentaire
+            </th>
+            <th class="text-center">
+              Supprimer
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let item of cash | async">
+          <td class="text-center">
+            {{item.date }}
+          </td>
+          <td class="text-center">
+            {{item.label}}
+          </td>
+          <td class="text-center">
+            {{item.amount}}
+          </td>
+          <td class="text-center">
+            {{item.type}}
+          </td>
+          <td class="text-center">
+            {{item.status}}
+          </td>
+          <td class="text-center">
+            {{item.comment}}
+          </td>
+          <td class="text-center">
+            X
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+<div class="col-lg-2">
+<app-balance></app-balance>
+<app-estimated-balance></app-estimated-balance>
+</div>
+<div class="col-lg-5">
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-category">Dernières sorties</h5>
+    <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières sorties</h3>
+  </div>
+  <div class="card-body">
+    <table class="table tablesorter">
+      <thead class="text-primary">
+      <tr>
+        <th class="text-center">
+          Date
+        </th>
+        <th class="text-center">
+          Label
+        </th>
+        <th class="text-center">
+          Montant
+        </th>
+        <th class="text-center">
+          Type
+        </th>
+        <th class="text-center">
+          Statut
+        </th>
+        <th class="text-center">
+          Commentaire
+        </th>
+        <th class="text-center">
+          Supprimer
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let item of expenses | async">
+      <td class="text-center">
+        {{item.date | date : format : timezone}}
+      </td>
+      <td class="text-center">
+        {{item.label}}
+      </td>
+      <td class="text-center">
+        {{item.amount}}
+      </td>
+      <td class="text-center">
+        {{item.type}}
+      </td>
+      <td class="text-center">
+        {{item.status}}
+      </td>
+      <td class="text-center">
+        {{item.comment}}
+      </td>
+      <td class="text-center">
+        X
+      </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+  </div>
+  </div>
