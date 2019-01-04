@@ -36,32 +36,29 @@
             </tr>
             </thead>
             <tr *ngFor="let item of cashList">
-              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
-                <!--div *ngIf="editMode && item.id == docId">
-                  <mat-form-field>
-                    <input class="form-control" formControlName="date" matInput [matDatepicker]="picker" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                </div>
-                <div *ngIf="!editMode">
-                  {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
-                </div-->
-              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
-                <!--div *ngIf="editMode && item.id == docId">
-                  <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="libelle"  value="{{item.label}}" ngModel required>
+              <td (click)="showInput(item.id, 'date')" class="text-center" style="cursor: pointer">
+                <div *ngIf="editMode && item.id == docId && input =='date'">
+                    <input type="date" class="form-control" formControlName="date" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}"/>
                   <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="!editMode">
+                <div *ngIf="item.id != docId || input != 'date'">
+                  {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
+                </div>
+              <td (click)="showInput(item.id, 'label_up')" class="text-center" style="cursor: pointer">
+                <div *ngIf="editMode && item.id == docId && input =='label_up'">
+                  <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="label_up"  value="{{item.label}}" ngModel>
+                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                </div>
+                <div *ngIf="item.id != docId || input != 'label_up'">
                   {{item.label}}
-                </div-->
+                </div>
               </td>
               <td (click)="showInput(item.id, 'amount_up')" class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='amount_up'">
                   <input type="text" formControlName="amount" class="form-control" placeholder="montant" id="amount_up" value="{{item.amount}}" ngModel>
                   <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="item.id != docId">
+                <div *ngIf="item.id != docId || input != 'amount_up'">
                   {{item.amount}}
                 </div>
               </td>
