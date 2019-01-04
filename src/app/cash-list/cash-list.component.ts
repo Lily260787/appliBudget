@@ -19,12 +19,15 @@ export class CashListComponent implements OnInit {
   ];
   // Form state
   success = false;
-  editMode_libelle = false;
+  editMode = false;
+  docId = '';
+  input = '';
+  /*editMode_libelle = false;
   editMode_date = false;
   editMode_amount = false;
   editMode_type = false;
   editMode_comment = false;
-  editMode_recurrence = false;
+  editMode_recurrence = false;*/
 
   constructor(
     private cashService: CashService,
@@ -117,38 +120,19 @@ export class CashListComponent implements OnInit {
   }
 
   update(cash: Cash) {
-    this.cashService.updateCash(cash);
+    //alert("update doc "+cash);
+    //this.cashService.updateCash(cash);
   }
 
   delete(id: string) {
     this.cashService.deleteCash(id);
   }
 
-  showInput(id_doc, input_id) {
-    console.log("id vaut "+id_doc);
-    console.log("input_id vaut "+input_id);
-    if (input_id == 'libelle') {
-      this.editMode_libelle = true;
-    }
-    switch (input_id) {
-      case 'libelle':
-        this.editMode_libelle = true;
-        break;
-      case 'date':
-        this.editMode_date = true;
-            break;
-      case 'amount':
-        this.editMode_amount = true;
-        break;
-      case 'modality':
-        this.editMode_type = true;
-        break;
-      case 'comment':
-        this.editMode_comment = true;
-        break;
-      default:
-        this.editMode_recurrence = true;
-    }
+  showInput(docId, input) {
+    console.log('input vaut ' + input);
+    this.editMode = true;
+    this.docId = docId;
+    this.input = input;
   }
 
   closeEdition() {

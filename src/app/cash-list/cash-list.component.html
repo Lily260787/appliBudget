@@ -5,6 +5,7 @@
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Liste de vos entrées enregistrées </h3>
       </div>
       <div class="card-body">
+        <form [formGroup]="cashForm" (ngSubmit)="upCashForm()">
           <table class="table tablesorter">
             <thead class="text-primary">
             <tr>
@@ -30,88 +31,65 @@
                 Récurrence
               </th>
               <th class="text-center">
-                Modifier
-              </th>
-              <th class="text-center">
                 Supprimer
               </th>
             </tr>
             </thead>
             <tr *ngFor="let item of cashList">
-              <td class="text-center">
-                {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
+              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
+                <!--div *ngIf="editMode && item.id == docId">
+                  <mat-form-field>
+                    <input class="form-control" formControlName="date" matInput [matDatepicker]="picker" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="!editMode">
+                  {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
+                </div-->
+              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
+                <!--div *ngIf="editMode && item.id == docId">
+                  <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="libelle"  value="{{item.label}}" ngModel required>
+                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                </div>
+                <div *ngIf="!editMode">
+                  {{item.label}}
+                </div-->
               </td>
-              <td class="text-center">
-                {{item.label}}
+              <td (click)="showInput(item.id, 'amount_up')" class="text-center" style="cursor: pointer">
+                <div *ngIf="editMode && item.id == docId && input =='amount_up'">
+                  <input type="text" formControlName="amount" class="form-control" placeholder="montant" id="amount_up" value="{{item.amount}}" ngModel>
+                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                </div>
+                <div *ngIf="item.id != docId">
+                  {{item.amount}}
+                </div>
               </td>
-              <td class="text-center">
-                {{item.amount}}
+              <td (click)="showInput(item.id, 'modality_up')" class="text-center" style="cursor: pointer">
+                <!--div *ngIf="editMode && item.id == docId && input =='modality_up'">
+                  <select formControlName="modality" id="modality_up" required>
+                    <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
+                  </select>
+                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                </div>
+                <div *ngIf="!editMode">
+                  {{item.modality.name}}
+                </div-->
               </td>
-              <td class="text-center">
-                {{item.type}}
-              </td>
-              <td class="text-center">
+              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
                 {{item.status}}
               </td>
-              <td class="text-center">
+              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
                 {{item.comment}}
-              </td>
-              <td (click)="showInput()" class="text-center" style="cursor: pointer">
+              <td class="text-center" style="cursor: pointer">
                 <i class="fas fa-redo"></i>
-              </td>
-              <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
-                <i class="far fa-edit"></i>
               </td>
               <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
                 <i class="fas fa-trash-alt"></i>
               </td>
             </tr>
-            <!--tr *ngFor="let item of cashList">
-              <td (click)="showInput(item.id, 'date')" class="text-center" style="cursor: pointer">
-                <div class="form-group">
-                  <mat-form-field>
-                    <input class="form-control" formControlName="date" matInput [matDatepicker]="picker" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" class="item.id" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                </div>
-                <div *ngIf="editMode_date_creation">
-                  <div class="form-group">
-                    <input type="text" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" id="date_creation" class="item.id"/>
-                    <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
-                  </div>
-                </div>
-                <div *ngIf="!editMode_date_creation">{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}</div>
-              </td>
-              <td (click)="showInput('libelle')" class="text-center" style="cursor: pointer">
-              <span *ngIf="editMode_libelle">
-                 <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="libelle" ngModel required>
-                  <span (click)="updateForm()">
-                    <i class="fas fa-check" style="color: #73ffe4"></i>
-                  </span>
-              </span>
-                <span *ngIf="!editMode">{{item.label}}</span>
-              </td>
-              <td (click)="showInput()" class="text-center" style="cursor: pointer">
-                {{item.amount}}
-              </td>
-              <td (click)="showInput()" class="text-center" style="cursor: pointer">
-                {{item.modality.name}}
-              </td>
-              <td (click)="showInput()" class="text-center" style="cursor: pointer">
-                {{item.status}}
-              </td>
-              <td (click)="showInput()" class="text-center" style="cursor: pointer">
-                {{item.comment}}
-              </td>
-              <td (click)="showInput()" class="text-center" style="cursor: pointer">
-                recurrence ici (rond)
-              </td>
-              <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
-                X
-              </td>
-            </tr-->
           </table>
+        </form>
       </div>
     </div>
   </div>
