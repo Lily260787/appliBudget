@@ -30,6 +30,9 @@
                 Récurrence
               </th>
               <th class="text-center">
+                Modifier
+              </th>
+              <th class="text-center">
                 Supprimer
               </th>
             </tr>
@@ -54,10 +57,13 @@
                 {{item.comment}}
               </td>
               <td (click)="showInput()" class="text-center" style="cursor: pointer">
-                recurrence ici (rond)
+                <i class="fas fa-redo"></i>
               </td>
               <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
-                X
+                <i class="far fa-edit"></i>
+              </td>
+              <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
+                <i class="fas fa-trash-alt"></i>
               </td>
             </tr>
             <!--tr *ngFor="let item of cashList">
