@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
           date: e.payload.doc.get('date'),
           label: e.payload.doc.get('label'),
           modality: e.payload.doc.get('modality'),
+          recurrence: e.payload.doc.get('recurrence'),
         } as Cash;
       });
     });

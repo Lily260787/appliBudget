@@ -16,7 +16,6 @@ import { AppComponent } from './app.component';
 import { BalanceComponent } from './balance/balance.component';
 import { EstimatedBalanceComponent } from './estimated-balance/estimated-balance.component';
 import { CashListComponent } from './cash-list/cash-list.component';
-import { ExpensesComponent } from './expenses/expenses.component';
 import { ExpenditureItemsComponent } from './expenditure-items/expenditure-items.component';
 import { StatsComponent } from './stats/stats.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
@@ -24,6 +23,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserService } from './services/user.service';
 import { UserListComponent } from './user-list/user-list.component';
 import { CashService } from './services/cash.service';
+import { ExpensesListComponent } from './expenses-list/expenses-list.component';
 
 const appRoutes: Routes = [
   { path: '',
@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     component: CashListComponent,
     data: { title: 'Mes entrées' }
     },
-  { path: 'expenses', component: ExpensesComponent, data: { title: 'Mes sorties' } },
+  { path: 'expenses', component: ExpensesListComponent, data: { title: 'Mes sorties' } },
   { path: 'expenditure_items', component: ExpenditureItemsComponent, data: { title: 'Mes postes' }  },
   { path: 'stats', component: StatsComponent, data: { title: 'Statistiques' }  },
   { path: 'bank_accounts', component: BankAccountsComponent, data: { title: 'Mes comptes' }  },
@@ -45,11 +45,11 @@ const appRoutes: Routes = [
     BalanceComponent,
     EstimatedBalanceComponent,
     CashListComponent,
-    ExpensesComponent,
     ExpenditureItemsComponent,
     StatsComponent,
     BankAccountsComponent,
     UserListComponent,
+    ExpensesListComponent,
   ],
   imports: [
     ReactiveFormsModule,

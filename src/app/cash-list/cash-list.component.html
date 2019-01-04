@@ -1,13 +1,119 @@
-
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Liste de vos entrées enregistrées </h3>
+      </div>
+      <div class="card-body">
+          <table class="table tablesorter">
+            <thead class="text-primary">
+            <tr>
+              <th class="text-center">
+                Date
+              </th>
+              <th class="text-center">
+                Label
+              </th>
+              <th class="text-center">
+                Montant
+              </th>
+              <th class="text-center">
+                Type
+              </th>
+              <th class="text-center">
+                Statut
+              </th>
+              <th class="text-center">
+                Commentaire
+              </th>
+              <th class="text-center">
+                Récurrence
+              </th>
+              <th class="text-center">
+                Supprimer
+              </th>
+            </tr>
+            </thead>
+            <tr *ngFor="let item of cashList">
+              <td class="text-center">
+                {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
+              </td>
+              <td class="text-center">
+                {{item.label}}
+              </td>
+              <td class="text-center">
+                {{item.amount}}
+              </td>
+              <td class="text-center">
+                {{item.type}}
+              </td>
+              <td class="text-center">
+                {{item.status}}
+              </td>
+              <td class="text-center">
+                {{item.comment}}
+              </td>
+              <td class="text-center">
+                X
+              </td>
+            </tr>
+            <!--tr *ngFor="let item of cashList">
+              <td (click)="showInput(item.id, 'date')" class="text-center" style="cursor: pointer">
+                <div class="form-group">
+                  <mat-form-field>
+                    <input class="form-control" formControlName="date" matInput [matDatepicker]="picker" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" class="item.id" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="editMode_date_creation">
+                  <div class="form-group">
+                    <input type="text" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" id="date_creation" class="item.id"/>
+                    <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  </div>
+                </div>
+                <div *ngIf="!editMode_date_creation">{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}</div>
+              </td>
+              <td (click)="showInput('libelle')" class="text-center" style="cursor: pointer">
+              <!--span *ngIf="editMode_libelle">
+                 <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="libelle" ngModel required>
+                  <span (click)="updateForm()">
+                    <i class="fas fa-check" style="color: #73ffe4"></i>
+                  </span>
+              </span>
+                <span *ngIf="!editMode">{{item.label}}</span>
+              </td>
+              <!--td (click)="showInput()" class="text-center" style="cursor: pointer">
+                {{item.amount}}
+              </td>
+              <td (click)="showInput()" class="text-center" style="cursor: pointer">
+                {{item.modality.name}}
+              </td>
+              <td (click)="showInput()" class="text-center" style="cursor: pointer">
+                {{item.status}}
+              </td>
+              <td (click)="showInput()" class="text-center" style="cursor: pointer">
+                {{item.comment}}
+              </td>
+              <td (click)="showInput()" class="text-center" style="cursor: pointer">
+                recurrence ici (rond)
+              </td>
+              <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
+                X
+              </td>
+            </tr-->
+          </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
     <div class="card">
       <div class="card-header">
         <h5 class="card-category">Créer une nouvelle entrée</h5>
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Formulaire de création d'une nouvelle entrée </h3>
       </div>
       <div class="card-body">
-        <form [formGroup]="cashForm" (ngSubmit)="submitForm()">
+        <form *ngIf="data" [formGroup]="cashForm" (ngSubmit)="submitForm()">
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -20,10 +126,7 @@
               </div>
               <div class="form-group">
                 <label for="amount">Montant</label>
-                <input type="text" formControlName="amount" class="form-control" placeholder="montant" id="amount" value="" ngModels>
-                <span *ngIf="amount.invalid && amount.touched">
-                  Merci de rentrer un montant
-                </span>
+                <input type="text" formControlName="amount" class="form-control" placeholder="montant" id="amount" value="" ngModel>
               </div>
               <div class="form-group">
                 <label>Libellé</label>
@@ -31,7 +134,7 @@
               </div>
               <div class="form-group">
                 <label for="modality">Type</label>
-                <select formControlName="modality" id="modality" required>
+                <select [formControlName]="modality" id="modality" required>
                   <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
                 </select>
               </div>

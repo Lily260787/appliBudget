@@ -22,7 +22,7 @@ export class CashService {
   }
 
   deleteCash(cashId: string) {
-    this.firestore.doc('cash-list/' + cashId).delete();
+    this.firestore.doc('cash/' + cashId).delete();
   }
 
 }
