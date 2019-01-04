@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-6">
+  <!--div class="col-lg-6">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Liste de vos entrées enregistrées </h3>
@@ -56,7 +56,7 @@
               <td class="text-center">
                 X
               </td>
-            </tr>
+            </tr-->
             <!--tr *ngFor="let item of cashList">
               <td (click)="showInput(item.id, 'date')" class="text-center" style="cursor: pointer">
                 <div class="form-group">
@@ -75,7 +75,7 @@
                 <div *ngIf="!editMode_date_creation">{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}</div>
               </td>
               <td (click)="showInput('libelle')" class="text-center" style="cursor: pointer">
-              <!--span *ngIf="editMode_libelle">
+              <span *ngIf="editMode_libelle">
                  <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="libelle" ngModel required>
                   <span (click)="updateForm()">
                     <i class="fas fa-check" style="color: #73ffe4"></i>
@@ -83,7 +83,7 @@
               </span>
                 <span *ngIf="!editMode">{{item.label}}</span>
               </td>
-              <!--td (click)="showInput()" class="text-center" style="cursor: pointer">
+              <td (click)="showInput()" class="text-center" style="cursor: pointer">
                 {{item.amount}}
               </td>
               <td (click)="showInput()" class="text-center" style="cursor: pointer">
@@ -101,11 +101,11 @@
               <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
                 X
               </td>
-            </tr-->
+            </tr>
           </table>
       </div>
     </div>
-  </div>
+  </div-->
   <div class="col-lg-6">
     <div class="card">
       <div class="card-header">
@@ -113,7 +113,7 @@
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Formulaire de création d'une nouvelle entrée </h3>
       </div>
       <div class="card-body">
-        <form *ngIf="data" [formGroup]="cashForm" (ngSubmit)="submitForm()">
+        <form [formGroup]="cashForm" (ngSubmit)="submitForm()">
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -134,7 +134,7 @@
               </div>
               <div class="form-group">
                 <label for="modality">Type</label>
-                <select [formControlName]="modality" id="modality" required>
+                <select formControlName="modality" id="modality" required>
                   <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
                 </select>
               </div>

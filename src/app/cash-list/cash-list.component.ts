@@ -69,7 +69,7 @@ export class CashListComponent implements OnInit {
       }
     );
 
-    this.upCashForm = this.fb.group(
+    this.cashForm = this.fb.group(
       {
         amount: ['',
           [Validators.required]
@@ -126,7 +126,7 @@ export class CashListComponent implements OnInit {
   showInput(id_doc, input_id) {
     console.log("id vaut "+id_doc);
     console.log("input_id vaut "+input_id);
-    if (input_id == 'libelle' && id_doc) {
+    if (input_id == 'libelle') {
       this.editMode_libelle = true;
     }
     switch (input_id) {
