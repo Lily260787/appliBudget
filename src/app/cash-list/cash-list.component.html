@@ -1,5 +1,5 @@
 <div class="row">
-  <!--div class="col-lg-6">
+  <div class="col-lg-6">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Liste de vos entrées enregistrées </h3>
@@ -53,10 +53,13 @@
               <td class="text-center">
                 {{item.comment}}
               </td>
-              <td class="text-center">
+              <td (click)="showInput()" class="text-center" style="cursor: pointer">
+                recurrence ici (rond)
+              </td>
+              <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
                 X
               </td>
-            </tr-->
+            </tr>
             <!--tr *ngFor="let item of cashList">
               <td (click)="showInput(item.id, 'date')" class="text-center" style="cursor: pointer">
                 <div class="form-group">
@@ -101,11 +104,11 @@
               <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
                 X
               </td>
-            </tr>
+            </tr-->
           </table>
       </div>
     </div>
-  </div-->
+  </div>
   <div class="col-lg-6">
     <div class="card">
       <div class="card-header">

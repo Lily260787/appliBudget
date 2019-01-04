@@ -96,6 +96,7 @@ export class CashListComponent implements OnInit {
     try {
       await this.create(this.cashForm.value);
       this.success = true;
+      this.cashForm.reset();
     } catch (err) {
       console.error(err);
     }
