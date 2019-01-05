@@ -20,6 +20,7 @@ export class CashListComponent implements OnInit {
   // Form state
   success = false;
   editMode = false;
+  readMode = false;
   docId = '';
   input = '';
   /*editMode_libelle = false;
@@ -46,6 +47,7 @@ export class CashListComponent implements OnInit {
           date: e.payload.doc.get('date'),
           label: e.payload.doc.get('label'),
           modality: e.payload.doc.get('modality'),
+          comment: e.payload.doc.get('comment'),
         } as Cash;
       });
     });
@@ -105,14 +107,15 @@ export class CashListComponent implements OnInit {
     }
   }
 
-  async updateForm() {
-    try {
+  updateForm() {
+    alert('updateForm called');
+    return this.editMode = false;
+   /*try {
+      this.editMode = false;
       await this.update(this.cashForm.value);
-      this.closeEdition();
-      this.success = true;
     } catch (err) {
       console.error(err);
-    }
+    }*/
   }
 
   create(cash: Cash) {
@@ -129,14 +132,20 @@ export class CashListComponent implements OnInit {
   }
 
   showInput(docId, input) {
-    console.log('input vaut ' + input);
+    alert('showInput');
     this.editMode = true;
     this.docId = docId;
     this.input = input;
+    console.log('editMode vaut '+this.editMode);
+    console.log('readMode vaut '+this.readMode);
+    this.readMode = false;
   }
 
   closeEdition() {
+    this.readMode = true;
     this.editMode = false;
+    console.log('editMode vaut '+this.editMode);
+    console.log('readMode vaut '+this.readMode);
   }
 
 }

@@ -63,23 +63,40 @@
                 </div>
               </td>
               <td (click)="showInput(item.id, 'modality_up')" class="text-center" style="cursor: pointer">
-                <!--div *ngIf="editMode && item.id == docId && input =='modality_up'">
+                <div *ngIf="editMode && item.id == docId && input =='modality_up'">
                   <select formControlName="modality" id="modality_up" required>
                     <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
                   </select>
                   <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="!editMode">
+                <div *ngIf="item.id != docId || input != 'modality_up'">
                   {{item.modality.name}}
-                </div-->
+                </div>
               </td>
-              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
-                {{item.status}}
+              <td (click)="showInput(item.id, 'status_up')" class="text-center" style="cursor: pointer">
+                <div *ngIf="editMode && item.id == docId && input =='status_up' && !readMode">
+                  <input type="text" formControlName="status" class="form-control" placeholder="statut" id="status_up" value="{{item.status}}" ngModel>
+                </div>
+                <div *ngIf="item.id != docId || input != 'status_up' || readMode">
+                  {{item.status}}
+                </div>
               </td>
-              <td (click)="showInput(item.id)" class="text-center" style="cursor: pointer">
-                {{item.comment}}
+              <div *ngIf="editMode && item.id == docId && input =='status_up' && !readMode">
+                <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+              </div>
+              <td (click)="showInput(item.id, 'comments_up')" class="text-center" style="cursor: pointer">
+                <div *ngIf="editMode && item.id == docId && input =='comments_up'">
+                  <input type="text" formControlName="comment" class="form-control" placeholder="commentaire" id="comments_up" value="{{item.comment}}" ngModel>
+                </div>
+                <div *ngIf="!editMode && item.id != docId || input != 'comments_up' || readMode">
+                  {{item.comment}}
+                </div>
+              </td>
+              <div *ngIf="editMode && item.id == docId && input =='comments_up'">
+                <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+              </div>
               <td class="text-center" style="cursor: pointer">
-                <i class="fas fa-redo"></i>
+                <i class="fas fa-redo" style="color: #DE4ECC;"></i>
               </td>
               <td (click)="delete(item.id)" class="text-center" style="cursor:pointer;">
                 <i class="fas fa-trash-alt"></i>
@@ -131,6 +148,10 @@
                   <mat-checkbox formControlName="recurrence" id="recurrence" class="form-control"></mat-checkbox>
                 </div>
               </div-->
+              <div class="form-group">
+                <label for="comment">Commentaire</label>
+                <textarea formControlName="comment" class="form-control" id="comment" ngModel></textarea>
+              </div>
             </div>
           </div>
           <div class="card-footer text-center">
