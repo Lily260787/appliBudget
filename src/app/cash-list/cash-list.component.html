@@ -36,65 +36,61 @@
             </tr>
             </thead>
             <tr *ngFor="let item of cashList">
-              <td (click)="showInput(item.id, 'date')" class="text-center" style="cursor: pointer">
+              <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='date'">
-                    <input type="date" class="form-control" formControlName="date" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}"/>
-                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <input type="date" class="form-control" formControlName="date" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}"/>
+                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="item.id != docId || input != 'date'">
+                <div (click)="showInput(item.id, 'date')" *ngIf="item.id != docId || input != 'date'  || readMode">
                   {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
                 </div>
-              <td (click)="showInput(item.id, 'label_up')" class="text-center" style="cursor: pointer">
+              <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='label_up'">
                   <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="label_up"  value="{{item.label}}" ngModel>
-                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="item.id != docId || input != 'label_up'">
+                <div (click)="showInput(item.id, 'label_up')" *ngIf="item.id != docId || input != 'label_up' || readMode">
                   {{item.label}}
                 </div>
               </td>
-              <td (click)="showInput(item.id, 'amount_up')" class="text-center" style="cursor: pointer">
+              <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='amount_up'">
                   <input type="text" formControlName="amount" class="form-control" placeholder="montant" id="amount_up" value="{{item.amount}}" ngModel>
-                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="item.id != docId || input != 'amount_up'">
+                <div (click)="showInput(item.id, 'amount_up')" *ngIf="item.id != docId || input != 'amount_up' || readMode">
                   {{item.amount}}
                 </div>
               </td>
-              <td (click)="showInput(item.id, 'modality_up')" class="text-center" style="cursor: pointer">
+              <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='modality_up'">
                   <select formControlName="modality" id="modality_up" required>
                     <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
                   </select>
-                  <span (click)="updateForm()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="item.id != docId || input != 'modality_up'">
+                <div (click)="showInput(item.id, 'modality_up')" *ngIf="item.id != docId || input != 'modality_up' || readMode">
                   {{item.modality.name}}
                 </div>
               </td>
-              <td (click)="showInput(item.id, 'status_up')" class="text-center" style="cursor: pointer">
-                <div *ngIf="editMode && item.id == docId && input =='status_up' && !readMode">
+              <td class="text-center" style="cursor: pointer">
+                <div *ngIf="editMode && item.id == docId && input =='status_up'">
                   <input type="text" formControlName="status" class="form-control" placeholder="statut" id="status_up" value="{{item.status}}" ngModel>
+                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="item.id != docId || input != 'status_up' || readMode">
+                <div (click)="showInput(item.id, 'status_up')" *ngIf="item.id != docId || input != 'status_up' || readMode">
                   {{item.status}}
                 </div>
               </td>
-              <div *ngIf="editMode && item.id == docId && input =='status_up' && !readMode">
-                <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
-              </div>
-              <td (click)="showInput(item.id, 'comments_up')" class="text-center" style="cursor: pointer">
+              <td  class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='comments_up'">
                   <input type="text" formControlName="comment" class="form-control" placeholder="commentaire" id="comments_up" value="{{item.comment}}" ngModel>
+                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div *ngIf="!editMode && item.id != docId || input != 'comments_up' || readMode">
+                <div (click)="showInput(item.id, 'comments_up')" *ngIf="!editMode && item.id != docId || input != 'comments_up' || readMode">
                   {{item.comment}}
                 </div>
               </td>
-              <div *ngIf="editMode && item.id == docId && input =='comments_up'">
-                <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
-              </div>
               <td class="text-center" style="cursor: pointer">
                 <i class="fas fa-redo" style="color: #DE4ECC;"></i>
               </td>
