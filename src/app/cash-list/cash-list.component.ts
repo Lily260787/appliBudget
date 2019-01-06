@@ -101,11 +101,11 @@ export class CashListComponent implements OnInit {
   }
   // Submitting updateForm (up)
   async updateForm(id, property, target) {
-    this.closeEdition();
+    this.closeEdition();// Hide the input, just show the td
     try {
       const upd = {};
-      upd[target] = this.upCashForm.value[property];
-      await this.cashService.updateCash(id, upd);
+      upd[target] = this.upCashForm.value[property];// Getting the property to update
+      await this.cashService.updateCash(id, upd); // sending the property to be updated to the service
     } catch (err) {
       console.error(err);
     }
