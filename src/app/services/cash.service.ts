@@ -16,9 +16,8 @@ export class CashService {
     return this.firestore.collection('cash').add(cash);
   }
 
-  updateCash(cash: Cash) {
-    delete data.id;
-    this.firestore.doc('cash-list/' + cash.id).update(cash);
+  updateCash(id, cash) {
+    this.firestore.doc('cash/' + id).update(cash);
   }
 
   deleteCash(cashId: string) {

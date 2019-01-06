@@ -1,5 +1,6 @@
 export class Cash {
   constructor(
+    public id: string,
     public amount: number,
     public comment: string,
     public date: string,

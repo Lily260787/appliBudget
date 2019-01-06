@@ -17,19 +17,12 @@ export class CashListComponent implements OnInit {
     {name : 'Dépôt'},
     {name : 'Chèque'}
   ];
-  // Form state
+  // Form states
   success = false;
   editMode = false;
   readMode = false;
   docId = '';
   input = '';
-  /*editMode_libelle = false;
-  editMode_date = false;
-  editMode_amount = false;
-  editMode_type = false;
-  editMode_comment = false;
-  editMode_recurrence = false;*/
-
   constructor(
     private cashService: CashService,
     private fb: FormBuilder
@@ -54,23 +47,23 @@ export class CashListComponent implements OnInit {
     //Managing the form to create new entries
     this.upCashForm = this.fb.group(
       {
-        amount: ['',
+        amount_up: ['',
           [Validators.required]
         ],
-        status : ['created',
+        status_up : ['created',
           [Validators.required]
         ],
-        label : [null,
+        label_up : [null,
           [Validators.required]
         ],
-        comment : [null],
-        date : [null,
+        comment_up : [null],
+        date_up : [null,
           [Validators.required]
         ],
-        modality : [null,
+        modality_up : [null,
           [Validators.required]
         ],
-        recurrence : ['false']
+        recurrence_up : ['false']
       }
     );
 
@@ -96,35 +89,26 @@ export class CashListComponent implements OnInit {
       }
     );
   }
-  // Submitting form
+  // Submitting cashForm (add)
   async submitForm() {
     try {
-      await this.create(this.cashForm.value);
+      await this.cashService.createCash(this.cashForm.value);
       this.success = true;
       this.cashForm.reset();
     } catch (err) {
       console.error(err);
     }
   }
-
-  updateForm() {
-    alert('updateForm called');
-    return this.editMode = false;
-   /*try {
-      this.editMode = false;
-      await this.update(this.cashForm.value);
+  // Submitting updateForm (up)
+  async updateForm(id, property, target) {
+    this.closeEdition();
+    try {
+      const upd = {};
+      upd[target] = this.upCashForm.value[property];
+      await this.cashService.updateCash(id, upd);
     } catch (err) {
       console.error(err);
-    }*/
-  }
-
-  create(cash: Cash) {
-    this.cashService.createCash(cash);
-  }
-
-  update(cash: Cash) {
-    //alert("update doc "+cash);
-    //this.cashService.updateCash(cash);
+    }
   }
 
   delete(id: string) {
@@ -132,20 +116,15 @@ export class CashListComponent implements OnInit {
   }
 
   showInput(docId, input) {
-    alert('showInput');
     this.editMode = true;
+    this.readMode = false;
     this.docId = docId;
     this.input = input;
-    console.log('editMode vaut '+this.editMode);
-    console.log('readMode vaut '+this.readMode);
-    this.readMode = false;
   }
 
   closeEdition() {
     this.readMode = true;
     this.editMode = false;
-    console.log('editMode vaut '+this.editMode);
-    console.log('readMode vaut '+this.readMode);
   }
 
 }

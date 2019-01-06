@@ -5,7 +5,7 @@
         <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Liste de vos entrées enregistrées </h3>
       </div>
       <div class="card-body">
-        <form [formGroup]="cashForm" (ngSubmit)="upCashForm()">
+        <form [formGroup]="upCashForm" (ngSubmit)="updateForm()">
           <table class="table tablesorter">
             <thead class="text-primary">
             <tr>
@@ -37,26 +37,28 @@
             </thead>
             <tr *ngFor="let item of cashList">
               <td class="text-center" style="cursor: pointer">
-                <div *ngIf="editMode && item.id == docId && input =='date'">
-                  <input type="date" class="form-control" formControlName="date" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}"/>
-                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                <div class="form-group" *ngIf="editMode && item.id == docId && input =='date'">
+                  <input type="date" class="form-control" formControlName="date_up" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" ngModel/>
+                  <span (click)="updateForm(item.id, 'date_up', 'date')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'date')" *ngIf="item.id != docId || input != 'date'  || readMode">
                   {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
+                  <input type="date" class="form-control" formControlName="date_up" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" ngModel hidden />
                 </div>
               <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='label_up'">
-                  <input type="text" formControlName="label" class="form-control" placeholder="libelle" id="label_up"  value="{{item.label}}" ngModel>
-                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <input type="text" formControlName="label_up" class="form-control" placeholder="libelle" id="label_up"  value="{{item.label}}" ngModel>
+                  <span (click)="updateForm(item.id, 'label_up', 'label')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'label_up')" *ngIf="item.id != docId || input != 'label_up' || readMode">
+                  <input type="text" formControlName="label_up" class="form-control" placeholder="libelle" id="label_up"  value="{{item.label}}" ngModel hidden />
                   {{item.label}}
                 </div>
               </td>
               <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='amount_up'">
-                  <input type="text" formControlName="amount" class="form-control" placeholder="montant" id="amount_up" value="{{item.amount}}" ngModel>
-                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <input type="text" formControlName="amount_up" class="form-control" placeholder="montant" id="amount_up" value="{{item.amount}}" ngModel>
+                  <span (click)="updateForm(item.id, 'amount_up', 'amount')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'amount_up')" *ngIf="item.id != docId || input != 'amount_up' || readMode">
                   {{item.amount}}
@@ -64,10 +66,10 @@
               </td>
               <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='modality_up'">
-                  <select formControlName="modality" id="modality_up" required>
+                  <select formControlName="modality_up" id="modality_up" required>
                     <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
                   </select>
-                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <span (click)="updateForm(item.id, 'modality_up', 'modality')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'modality_up')" *ngIf="item.id != docId || input != 'modality_up' || readMode">
                   {{item.modality.name}}
@@ -75,19 +77,19 @@
               </td>
               <td class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='status_up'">
-                  <input type="text" formControlName="status" class="form-control" placeholder="statut" id="status_up" value="{{item.status}}" ngModel>
-                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <input type="text" formControlName="status_up" class="form-control" placeholder="statut" id="status_up" value="{{item.status}}" ngModel>
+                  <span (click)="updateForm(item.id, 'status_up', 'status')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'status_up')" *ngIf="item.id != docId || input != 'status_up' || readMode">
                   {{item.status}}
                 </div>
               </td>
               <td  class="text-center" style="cursor: pointer">
-                <div *ngIf="editMode && item.id == docId && input =='comments_up'">
-                  <input type="text" formControlName="comment" class="form-control" placeholder="commentaire" id="comments_up" value="{{item.comment}}" ngModel>
-                  <span (click)="closeEdition()"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                <div *ngIf="editMode && item.id == docId && input =='comment_up'">
+                  <input type="text" formControlName="comment_up" class="form-control" placeholder="commentaire" id="comment_up" value="{{item.comment}}" ngModel>
+                  <span (click)="updateForm(item.id, 'comment_up', 'comment')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
-                <div (click)="showInput(item.id, 'comments_up')" *ngIf="!editMode && item.id != docId || input != 'comments_up' || readMode">
+                <div (click)="showInput(item.id, 'comment_up')" *ngIf="!editMode && item.id != docId || input != 'comment_up' || readMode">
                   {{item.comment}}
                 </div>
               </td>
