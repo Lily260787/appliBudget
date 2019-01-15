@@ -7,5 +7,21 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ExpenseService {
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
+
+  getExpenses() {
+    return this.firestore.collection('expense').snapshotChanges();
+  }
+
+  createExpense(expense: Expense) {
+    return this.firestore.collection('expense').add(Expense);
+  }
+
+  updateExpense(id, expenses) {
+    this.firestore.doc('expense/' + id).update(expenses);
+  }
+
+  deleteExpense(expenseId: string) {
+    this.firestore.doc('expense/' + expenseId).delete();
+  }
 }
