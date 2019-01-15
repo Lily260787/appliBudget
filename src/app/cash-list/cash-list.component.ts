@@ -118,6 +118,8 @@ export class CashListComponent implements OnInit {
   }
 
   showInput(docId, input) {
+    console.log('docId vaut ' +docId);
+    console.log('input vaut ' +input);
     this.editMode = true;
     this.readMode = false;
     this.docId = docId;

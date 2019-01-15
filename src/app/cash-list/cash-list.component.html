@@ -38,7 +38,11 @@
             <tr *ngFor="let item of cashList">
               <td class="text-center" style="cursor: pointer">
                 <div class="form-group" *ngIf="editMode && item.id == docId && input =='date'">
-                  <input type="date" class="form-control" formControlName="date_up" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" ngModel/>
+                  <mat-form-field>
+                    <input class="form-control" formControlName="date_up" matInput [matDatepicker]="picker_up" value="{{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}" ngModel/>
+                    <mat-datepicker-toggle matSuffix [for]="picker_up"></mat-datepicker-toggle>
+                    <mat-datepicker #picker_up></mat-datepicker>
+                  </mat-form-field>
                   <span (click)="updateForm(item.id, 'date_up', 'date')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'date')" *ngIf="item.id != docId || input != 'date'  || readMode">
