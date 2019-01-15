@@ -72,7 +72,7 @@
                   <span (click)="updateForm(item.id, 'modality_up', 'modality')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'modality_up')" *ngIf="item.id != docId || input != 'modality_up' || readMode">
-                  {{item.modality.name}}
+                  <span *ngIf="item.modality != null">{{item.modality.name}}</span>
                 </div>
               </td>
               <td class="text-center" style="cursor: pointer">
@@ -87,10 +87,10 @@
               <td  class="text-center" style="cursor: pointer">
                 <div *ngIf="editMode && item.id == docId && input =='comment_up'">
                   <input type="text" formControlName="comment_up" class="form-control" placeholder="commentaire" id="comment_up" value="{{item.comment}}" ngModel>
-                  <span (click)="updateForm(item.id, 'comment_up', 'comment')"><i class="fas fa-check" style="color: #73ffe4"></i></span>
+                  <span (click)="updateForm(item.id, 'comment_up', 'comment', item.comment)"><i class="fas fa-check" style="color: #73ffe4"></i></span>
                 </div>
                 <div (click)="showInput(item.id, 'comment_up')" *ngIf="!editMode && item.id != docId || input != 'comment_up' || readMode">
-                  {{item.comment}}
+                  <span *ngIf="item.comment != null">{{item.comment}}</span>
                 </div>
               </td>
               <td class="text-center" style="cursor: pointer">

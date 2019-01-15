@@ -1,0 +1,56 @@
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-category">Créer une nouvelle sortie</h5>
+        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Formulaire de création d'une nouvelle sortie </h3>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="expenseForm" (ngSubmit)="submitForm()">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <mat-form-field>
+                  <input class="form-control" formControlName="date" matInput [matDatepicker]="picker" required>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="form-group">
+                <label for="amount">Montant</label>
+                <input type="text" formControlName="amount" class="form-control" placeholder="montant" id="amount" value="" ngModel>
+              </div>
+              <div class="form-group">
+                <label>Libellé</label>
+                <input type="text" formControlName="label" class="form-control" placeholder="libelle" ngModel required>
+              </div>
+              <div class="form-group">
+                <label for="modality">Type</label>
+                <select formControlName="modality" id="modality" required>
+                  <option *ngFor="let option of options" [ngValue]="option"> {{option.name}}</option>
+                </select>
+              </div>
+              <!-- Todo: gérer la récurrence -->
+              <!--div class="form-group">
+                <div class="col-md-6">
+                  <label for="recurrence">Entrée récurrente ?</label>
+                </div>
+                <div class="col-md-6">
+                  <mat-checkbox formControlName="recurrence" id="recurrence" class="form-control"></mat-checkbox>
+                </div>
+              </div-->
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button [disabled]="expenseForm.invalid" class="btn btn-fill btn-primary">Save</button>
+          </div>
+        </form>
+        <div *ngIf="success">
+          New entry saved !
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

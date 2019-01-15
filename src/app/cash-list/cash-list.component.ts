@@ -40,7 +40,6 @@ export class CashListComponent implements OnInit {
           date: e.payload.doc.get('date'),
           label: e.payload.doc.get('label'),
           modality: e.payload.doc.get('modality'),
-          comment: e.payload.doc.get('comment'),
         } as Cash;
       });
     });
@@ -100,12 +99,15 @@ export class CashListComponent implements OnInit {
     }
   }
   // Submitting updateForm (up)
-  async updateForm(id, property, target) {
-    this.closeEdition();// Hide the input, just show the td
+  async updateForm(id, property, target, oldValue) {
+    this.closeEdition(); // Hide the input, just show the td
     try {
-      const upd = {};
-      upd[target] = this.upCashForm.value[property];// Getting the property to update
-      await this.cashService.updateCash(id, upd); // sending the property to be updated to the service
+      const updatedItem = {};
+      updatedItem[target] = this.upCashForm.value[property];// Getting the property to update
+      if (updatedItem[target] == null || updatedItem[target] === '') {
+        return;
+      }
+      await this.cashService.updateCash(id, updatedItem); // sending the property to be updated to the service
     } catch (err) {
       console.error(err);
     }
