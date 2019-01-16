@@ -14,7 +14,7 @@ export class ExpenseService {
   }
 
   createExpense(expense: Expense) {
-    return this.firestore.collection('expense').add(Expense);
+    return this.firestore.collection('expense').add(expense);
   }
 
   updateExpense(id, expenses) {

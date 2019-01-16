@@ -44,6 +44,7 @@ export class ExpensesListComponent implements OnInit {
           date: e.payload.doc.get('date'),
           label: e.payload.doc.get('label'),
           modality: e.payload.doc.get('modality'),
+          recurrence: e.payload.doc.get('recurrence'),
         } as Expense;
       });
     });
@@ -98,14 +99,14 @@ export class ExpensesListComponent implements OnInit {
   async submitForm() {
     try {
       await this.expenseService.createExpense(this.expenseForm.value);
-      this.success = true;
       this.expenseForm.reset();
+      this.success = true;
     } catch (err) {
       console.error(err);
     }
   }
   // Submitting updateForm (up)
-  async updateForm(id, property, target, oldValue) {
+  async updateForm(id, property, target) {
     this.closeEdition(); // Hide the input, just show the td
     try {
       const updatedItem = {};
@@ -120,12 +121,10 @@ export class ExpensesListComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.expenseService.deleteCash(id);
+    this.expenseService.deleteExpense(id);
   }
 
   showInput(docId, input) {
-    console.log('docId vaut ' +docId);
-    console.log('input vaut ' +input);
     this.editMode = true;
     this.readMode = false;
     this.docId = docId;

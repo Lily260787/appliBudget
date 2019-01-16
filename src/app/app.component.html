@@ -215,12 +215,9 @@
                   <th class="text-center">
                     Commentaire
                   </th>
-                  <th class="text-center">
-                    Récurrence
-                  </th>
                 </tr>
                 </thead>
-                <tr *ngFor="let item of cashList">
+                <tr *ngFor="let item of cashList | slice:0:5">
                   <td class="text-center">
                     {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
                   </td>
@@ -239,9 +236,6 @@
                   <td class="text-center">
                     {{item.comment}}
                   </td>
-                  <td class="text-center" *ngIf="true">
-                    recurrence ici (rond)
-                  </td>
                 </tr>
               </table>
             </div>
@@ -250,11 +244,53 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-header">
-              <h5 class="card-category">Graphique</h5>
-              <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i> Vos dernières sorties</h3>
+              <h5 class="card-category">Liste de vos dernières sorties</h5>
             </div>
             <div class="card-body">
-              <p>Ici futur tableau</p>
+              <table class="table tablesorter">
+                <thead class="text-primary">
+                <tr>
+                  <th class="text-center">
+                    Date
+                  </th>
+                  <th class="text-center">
+                    Label
+                  </th>
+                  <th class="text-center">
+                    Montant
+                  </th>
+                  <th class="text-center">
+                    Type
+                  </th>
+                  <th class="text-center">
+                    Statut
+                  </th>
+                  <th class="text-center">
+                    Commentaire
+                  </th>
+                </tr>
+                </thead>
+                <tr *ngFor="let item of expenseList">
+                  <td class="text-center">
+                    {{(item.date.seconds*1000) | date : 'dd/MM/yyyy' }}
+                  </td>
+                  <td class="text-center">
+                    {{item.label}}
+                  </td>
+                  <td class="text-center">
+                    {{item.amount}}
+                  </td>
+                  <td class="text-center">
+                    {{item.modality.name}}
+                  </td>
+                  <td class="text-center">
+                    {{item.status}}
+                  </td>
+                  <td class="text-center">
+                    {{item.comment}}
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
